@@ -1,4 +1,4 @@
-package com.aymanshehri.bakingapp.Models;
+package com.aymanshehri.bakingapp.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;
