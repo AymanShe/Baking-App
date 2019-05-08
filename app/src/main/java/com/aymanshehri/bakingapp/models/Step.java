@@ -71,7 +71,7 @@ class Step implements Parcelable {
         this.thumbnailURL = thumbnailURL;
     }
     //endregion
-    
+
     //region Parcelable methods
     protected Step(Parcel in) {
         id = in.readInt();
