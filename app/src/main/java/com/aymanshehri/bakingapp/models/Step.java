@@ -3,7 +3,7 @@ package com.aymanshehri.bakingapp.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-class Step implements Parcelable {
+public class Step implements Parcelable {
     private int id;
     private String shortDescription;
     private String description;
