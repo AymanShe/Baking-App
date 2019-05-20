@@ -2,7 +2,10 @@ package com.aymanshehri.bakingapp.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +14,7 @@ import android.widget.TextView;
 
 import com.aymanshehri.bakingapp.R;
 import com.aymanshehri.bakingapp.activities.RecipeDetailsActivity;
+import com.aymanshehri.bakingapp.activities.RecipeDetailsFragment;
 import com.aymanshehri.bakingapp.models.Recipe;
 
 import java.util.ArrayList;

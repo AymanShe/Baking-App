@@ -10,7 +10,7 @@ public class Recipe implements Parcelable {
     private int id;
     private String name;
     private List<Ingredient> ingredients;
-    private List<Step> steps;
+    private ArrayList<Step> steps;
     private int servings;
     private String image;
 
@@ -20,7 +20,7 @@ public class Recipe implements Parcelable {
         steps = new ArrayList<>();
     }
 
-    public Recipe(int id, String name, List<Ingredient> ingredients, List<Step> steps, int servings, String image) {
+    public Recipe(int id, String name, List<Ingredient> ingredients, ArrayList<Step> steps, int servings, String image) {
         this.id = id;
         this.name = name;
         this.ingredients = ingredients;
@@ -41,7 +41,7 @@ public class Recipe implements Parcelable {
         return ingredients;
     }
 
-    public List<Step> getSteps() {
+    public ArrayList<Step> getSteps() {
         return steps;
     }
 
@@ -65,7 +65,7 @@ public class Recipe implements Parcelable {
         this.ingredients = ingredients;
     }
 
-    public void setSteps(List<Step> steps) {
+    public void setSteps(ArrayList<Step> steps) {
         this.steps = steps;
     }
 
@@ -85,7 +85,7 @@ public class Recipe implements Parcelable {
         name = in.readString();
         servings = in.readInt();
         ingredients = (List<Ingredient>) in.readValue(Ingredient.class.getClassLoader());
-        steps = (List<Step>) in.readValue(Step.class.getClassLoader());
+        steps = (ArrayList<Step>) in.readValue(Step.class.getClassLoader());
         image = in.readString();
     }
 

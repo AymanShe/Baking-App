@@ -10,18 +10,18 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.aymanshehri.bakingapp.R;
-import com.aymanshehri.bakingapp.activities.RecipeDetailsActivity;
 import com.aymanshehri.bakingapp.activities.StepDetailsActivity;
 import com.aymanshehri.bakingapp.models.Step;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepViewHolder>    {
 
     Context context;
-    List<Step> stepList;
+    ArrayList<Step> stepList;
 
-    public StepsAdapter(Context context, List<Step> stepList) {
+    public StepsAdapter(Context context, ArrayList<Step> stepList) {
         this.context = context;
         this.stepList = stepList;
     }
@@ -55,7 +55,8 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepViewHold
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(context, StepDetailsActivity.class);
-                    intent.putExtra("step",stepList.get(getAdapterPosition()));
+                    intent.putExtra("position",getAdapterPosition());
+                    intent.putParcelableArrayListExtra("steps",stepList);
                     context.startActivity(intent);
                 }
             });
