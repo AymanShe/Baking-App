@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,8 +20,19 @@ public class StepDetailsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_step_details,container,false);
 
-
         Step step = getArguments().getParcelable("step");
+
+
+        Bundle bundle = new Bundle();
+        bundle.putString("video", step.getVideoURL());
+        bundle.putString("image", step.getThumbnailURL());
+        VideoOrImageFragment videoOrImageFragment = new VideoOrImageFragment();
+        videoOrImageFragment.setArguments(bundle);
+
+        FragmentManager fm = getFragmentManager();
+        fm.beginTransaction().add(R.id.fl_video_or_image, videoOrImageFragment).commit();
+
+
 
         TextView description = view.findViewById(R.id.tv_description);
         description.setText(step.getDescription());
