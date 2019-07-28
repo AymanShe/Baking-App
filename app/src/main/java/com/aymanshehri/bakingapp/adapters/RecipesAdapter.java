@@ -11,8 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.aymanshehri.bakingapp.R;
-import com.aymanshehri.bakingapp.activities.RecipeDetailsActivity;
-import com.aymanshehri.bakingapp.activities.RecipeDetailsFragment;
+import com.aymanshehri.bakingapp.activities.StepListActivity;
 import com.aymanshehri.bakingapp.models.Recipe;
 
 import java.util.ArrayList;
@@ -61,7 +60,7 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipeVi
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                        Intent intent = new Intent(context, RecipeDetailsActivity.class);
+                        Intent intent = new Intent(context, StepListActivity.class);
                         intent.putExtra("recipe",recipes.get(getAdapterPosition()));
                         context.startActivity(intent);
                     }
