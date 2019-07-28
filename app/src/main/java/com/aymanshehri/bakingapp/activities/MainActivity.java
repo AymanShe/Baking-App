@@ -5,6 +5,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -38,12 +39,13 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         getRecipes();
-
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        //todo findout of it is a tablet and assign number of columns to 2
+        int numberOfColumns = 2;
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, numberOfColumns);
         //todo restore instance state
 //        if (instanceState != null)
 //            linearLayoutManager.onRestoreInstanceState(instanceState);
-        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setLayoutManager(gridLayoutManager);
         recipeAdapter = new RecipesAdapter(this);
         recyclerView.setAdapter(recipeAdapter);
 
@@ -64,9 +66,7 @@ public class MainActivity extends AppCompatActivity {
         call.enqueue(new Callback<List<Recipe>>() {
             @Override
             public void onResponse(Call<List<Recipe>> call, Response<List<Recipe>> response) {
-                //remove loading panel
-                //assign to recipes
-                //update recycler view
+                //todo remove loading panel
                 recipes = response.body();
                 recipeAdapter.notifyChange(recipes);
             }
