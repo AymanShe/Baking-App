@@ -1,14 +1,13 @@
 package com.aymanshehri.bakingapp.activities;
 
 import android.content.Intent;
-import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 
 import com.aymanshehri.bakingapp.R;
 import com.aymanshehri.bakingapp.models.Recipe;
-
-import java.util.ArrayList;
 
 public class RecipeDetailsActivity extends AppCompatActivity {
 

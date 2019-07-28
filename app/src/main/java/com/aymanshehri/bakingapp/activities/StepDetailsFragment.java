@@ -1,25 +1,36 @@
 package com.aymanshehri.bakingapp.activities;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+
 import com.aymanshehri.bakingapp.R;
 import com.aymanshehri.bakingapp.models.Step;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class StepDetailsFragment extends Fragment {
+
+    @BindView(R.id.tv_description)
+    TextView description;
+    @BindView(R.id.btn_next)
+    Button next;
+    @BindView(R.id.btn_previous)
+    Button previous;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_step_details,container,false);
-
+        ButterKnife.bind(this, view);
         Step step = getArguments().getParcelable("step");
 
 
@@ -34,11 +45,10 @@ public class StepDetailsFragment extends Fragment {
 
 
 
-        TextView description = view.findViewById(R.id.tv_description);
+
         description.setText(step.getDescription());
 
-        Button next = view.findViewById(R.id.btn_next);
-        Button previous = view.findViewById(R.id.btn_previous);
+
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override

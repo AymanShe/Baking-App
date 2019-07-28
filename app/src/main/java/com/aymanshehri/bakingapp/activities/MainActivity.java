@@ -1,11 +1,12 @@
 package com.aymanshehri.bakingapp.activities;
 
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.aymanshehri.bakingapp.R;
 import com.aymanshehri.bakingapp.adapters.RecipesAdapter;
@@ -13,6 +14,9 @@ import com.aymanshehri.bakingapp.WebService;
 import com.aymanshehri.bakingapp.models.Recipe;
 
 import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -23,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     final String TAG = "MyTag";
     private List<Recipe> recipes;
+    @BindView(R.id.rv_recipe)
     RecyclerView recyclerView;
     private RecipesAdapter recipeAdapter;
 
@@ -30,11 +35,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //todo  ButterKnife.bind(this);
+        ButterKnife.bind(this);
 
         getRecipes();
 
-        recyclerView = findViewById(R.id.rv_recipe);//todo use butterknife
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         //todo restore instance state
 //        if (instanceState != null)
