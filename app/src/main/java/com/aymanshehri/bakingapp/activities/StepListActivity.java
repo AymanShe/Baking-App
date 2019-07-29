@@ -1,5 +1,7 @@
 package com.aymanshehri.bakingapp.activities;
 
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import com.aymanshehri.bakingapp.MyAppWidgetProvider;
 import com.aymanshehri.bakingapp.adapters.MyViewPagerAdapter;
 import com.aymanshehri.bakingapp.R;
 import com.aymanshehri.bakingapp.adapters.StepsAdapter;
@@ -141,7 +144,11 @@ public class StepListActivity extends AppCompatActivity {
                     Toast.makeText(this, "Recipe Added Successfully To Widget", Toast.LENGTH_SHORT).show();
                 }
 
-                //todo apply chamges to widget
+                //update the widget
+                int[] ids = AppWidgetManager.getInstance(this).getAppWidgetIds(new ComponentName(this, MyAppWidgetProvider.class));
+                MyAppWidgetProvider myAppWidgetProvider = new MyAppWidgetProvider();
+                myAppWidgetProvider.onUpdate(this, AppWidgetManager.getInstance(this), ids);
+
                 break;
         }
 
