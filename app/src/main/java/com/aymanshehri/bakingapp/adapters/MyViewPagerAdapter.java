@@ -1,4 +1,4 @@
-package com.aymanshehri.bakingapp;
+package com.aymanshehri.bakingapp.adapters;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -45,4 +45,6 @@ public class MyViewPagerAdapter extends FragmentStatePagerAdapter {
     public CharSequence getPageTitle(int position) {
         return steps.get(position).getShortDescription();
     }
+
+
 }

@@ -1,22 +1,23 @@
-package com.aymanshehri.bakingapp;
+package com.aymanshehri.bakingapp.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 
+import com.aymanshehri.bakingapp.adapters.MyViewPagerAdapter;
+import com.aymanshehri.bakingapp.R;
 import com.aymanshehri.bakingapp.models.Step;
 
 import java.util.ArrayList;
 
-public class MyViewPager extends AppCompatActivity {
+public class StepDetailActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_view_pager);
+        setContentView(R.layout.activity_step_detail);
 
         Intent intent = getIntent();
         ArrayList<Step> steps = intent.getParcelableArrayListExtra("steps");

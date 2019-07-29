@@ -5,15 +5,18 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
-import com.aymanshehri.bakingapp.MyViewPager;
+import com.aymanshehri.bakingapp.adapters.MyViewPagerAdapter;
 import com.aymanshehri.bakingapp.R;
 import com.aymanshehri.bakingapp.adapters.StepsAdapter;
 import com.aymanshehri.bakingapp.models.Ingredient;
 import com.aymanshehri.bakingapp.models.Recipe;
+import com.aymanshehri.bakingapp.models.Step;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,6 +31,9 @@ public class StepListActivity extends AppCompatActivity {
     TextView recipeIngredients;
     @BindView(R.id.rv_recipe_steps)
     RecyclerView stepsRecyclerView;
+
+    ArrayList<Step> steps;
+    private ViewPager viewPager;
     private boolean isTwoPane;
 
     @Override
@@ -39,8 +45,8 @@ public class StepListActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         Recipe recipe = intent.getParcelableExtra("recipe");
-
-        if (findViewById(R.id.fl_details_fragment) != null) {
+        steps = recipe.getSteps();
+        if (findViewById(R.id.view_pager) != null) {
             isTwoPane = true;
         }
         //populate the recycler view of the step List
@@ -64,20 +70,13 @@ public class StepListActivity extends AppCompatActivity {
         //steps
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         stepsRecyclerView.setLayoutManager(linearLayoutManager);
-        StepsAdapter stepsAdapter = new StepsAdapter(recipe.getSteps(), new StepsAdapter.onStepClickListener() {
+        StepsAdapter stepsAdapter = new StepsAdapter(steps, new StepsAdapter.onStepClickListener() {
             @Override
             public void onClick(int position) {
                 if (isTwoPane) {
-                    //todo link with page viewer
-                    Bundle bundle = new Bundle();
-                    bundle.putParcelable("step", recipe.getSteps().get(position));
-                    StepDetailsFragment stepDetailsFragment = new StepDetailsFragment();
-                    stepDetailsFragment.setArguments(bundle);
-
-                    FragmentManager fm = getSupportFragmentManager();
-                    fm.beginTransaction().replace(R.id.fl_details_fragment, stepDetailsFragment).commit();
+                    viewPager.setCurrentItem(position);
                 } else {
-                    Intent intent = new Intent(getApplicationContext(), MyViewPager.class);
+                    Intent intent = new Intent(getApplicationContext(), StepDetailActivity.class);
                     intent.putExtra("position", position);
                     intent.putParcelableArrayListExtra("steps", recipe.getSteps());
                     startActivity(intent);
@@ -85,5 +84,12 @@ public class StepListActivity extends AppCompatActivity {
             }
         });
         stepsRecyclerView.setAdapter(stepsAdapter);
+
+
+        if(isTwoPane){
+            viewPager = findViewById(R.id.view_pager);
+            MyViewPagerAdapter adapter = new MyViewPagerAdapter(getSupportFragmentManager(),steps);
+            viewPager.setAdapter(adapter);
+        }
     }
 }
