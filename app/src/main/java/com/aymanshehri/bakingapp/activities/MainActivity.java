@@ -6,10 +6,10 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.aymanshehri.bakingapp.R;
+import com.aymanshehri.bakingapp.SimpleIdlingResource;
 import com.aymanshehri.bakingapp.adapters.RecipesAdapter;
 import com.aymanshehri.bakingapp.WebService;
 import com.aymanshehri.bakingapp.models.Recipe;
@@ -27,14 +27,21 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MainActivity extends AppCompatActivity {
 
     final String TAG = "MyTag";
-    private List<Recipe> recipes;
     @BindView(R.id.rv_recipe)
     RecyclerView recyclerView;
+    SimpleIdlingResource simpleIdlingResource;
+    private List<Recipe> recipes;
     private RecipesAdapter recipeAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (simpleIdlingResource == null) {
+            simpleIdlingResource = new SimpleIdlingResource();
+        }
+        simpleIdlingResource.setIdle(false);
+
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
@@ -52,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void getRecipes(){
+    private void getRecipes() {
         //Retrofit
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(WebService.BASE_URL)
@@ -69,6 +76,8 @@ public class MainActivity extends AppCompatActivity {
                 //todo remove loading panel
                 recipes = response.body();
                 recipeAdapter.notifyChange(recipes);
+
+                simpleIdlingResource.setIdle(true);
             }
 
             @Override
