@@ -68,6 +68,7 @@ public class StepListActivity extends AppCompatActivity {
             @Override
             public void onClick(int position) {
                 if (isTwoPane) {
+                    //todo link with page viewer
                     Bundle bundle = new Bundle();
                     bundle.putParcelable("step", recipe.getSteps().get(position));
                     StepDetailsFragment stepDetailsFragment = new StepDetailsFragment();
