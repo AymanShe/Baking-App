@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.aymanshehri.bakingapp.MyViewPager;
 import com.aymanshehri.bakingapp.R;
 import com.aymanshehri.bakingapp.adapters.StepsAdapter;
 import com.aymanshehri.bakingapp.models.Ingredient;
@@ -75,7 +76,7 @@ public class StepListActivity extends AppCompatActivity {
                     FragmentManager fm = getSupportFragmentManager();
                     fm.beginTransaction().replace(R.id.fl_details_fragment, stepDetailsFragment).commit();
                 } else {
-                    Intent intent = new Intent(getApplicationContext(), StepDetailsActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), MyViewPager.class);
                     intent.putExtra("position", position);
                     intent.putParcelableArrayListExtra("steps", recipe.getSteps());
                     startActivity(intent);
