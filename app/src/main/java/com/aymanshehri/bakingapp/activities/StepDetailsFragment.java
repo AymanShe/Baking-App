@@ -41,6 +41,9 @@ public class StepDetailsFragment extends Fragment {
     SimpleExoPlayerView mPlayerView;
     @BindView(R.id.iv_image)
     ImageView imageView;
+    @BindView(R.id.tv_no_video_or_image)
+    TextView textView;
+
 
     private SimpleExoPlayer mExoPlayer;
     private String videoUrl;
@@ -71,7 +74,6 @@ public class StepDetailsFragment extends Fragment {
             Picasso.with(getActivity()).load(imageUrl).into(imageView);//todo change after updating dependency Picasso.get().load(imageUrl).into(imageView);
             imageView.setVisibility(View.VISIBLE);
         } else {
-            TextView textView = view.findViewById(R.id.tv_no_video_or_image);
             textView.setVisibility(View.VISIBLE);
         }
         return view;

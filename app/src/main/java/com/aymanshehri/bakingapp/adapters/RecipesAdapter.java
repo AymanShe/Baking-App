@@ -17,6 +17,9 @@ import com.aymanshehri.bakingapp.models.Recipe;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipeViewHolder>   {
 
     Context context;
@@ -51,12 +54,12 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipeVi
         notifyDataSetChanged();
     }
     class RecipeViewHolder extends RecyclerView.ViewHolder {
-        final TextView recipeName;
+        @BindView(R.id.tv_recipe_name_label)
+        TextView recipeName;
 
         RecipeViewHolder(@NonNull View itemView) {
             super(itemView);
-            recipeName = itemView.findViewById(R.id.tv_recipe_name_label);//todo use butter knife
-
+            ButterKnife.bind(this, itemView);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

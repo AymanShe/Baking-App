@@ -7,11 +7,15 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 import com.aymanshehri.bakingapp.R;
 import com.aymanshehri.bakingapp.models.Step;
 
 import java.util.ArrayList;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepViewHolder>    {
 
@@ -42,10 +46,11 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepViewHold
     }
 
     public class StepViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.tv_step_item)
         TextView stepName;
         public StepViewHolder(@NonNull View itemView) {
             super(itemView);
-            stepName = itemView.findViewById(R.id.tv_step_item);
+            ButterKnife.bind(this, itemView);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
